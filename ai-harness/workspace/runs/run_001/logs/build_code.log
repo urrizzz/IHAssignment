@@ -1,0 +1,39 @@
+DOCKER COMMAND:
+docker exec dotnet-runner sh -lc cd /workspace/runs/run_001/generated/GeneratedPipeline && dotnet build
+
+STDOUT:
+  Determining projects to restore...
+  Restored /workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj (in 114 ms).
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(49,36): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(51,41): warning CS8604: Possible null reference argument for parameter 'item' in 'bool HashSet<string>.Contains(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(78,40): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(84,43): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(90,45): warning CS8604: Possible null reference argument for parameter 'value' in 'void Dictionary<string, object>.Add(string key, object value)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(91,63): warning CS8604: Possible null reference argument for parameter 'item' in 'void List<string>.Add(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(101,63): warning CS8604: Possible null reference argument for parameter 'item' in 'void List<string>.Add(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(110,39): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(116,41): warning CS8604: Possible null reference argument for parameter 'value' in 'void Dictionary<string, object>.Add(string key, object value)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(124,37): warning CS8602: Dereference of a possibly null reference. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(135,40): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+  GeneratedPipeline -> /workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline.dll
+
+Build succeeded.
+
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(49,36): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(51,41): warning CS8604: Possible null reference argument for parameter 'item' in 'bool HashSet<string>.Contains(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(78,40): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(84,43): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(90,45): warning CS8604: Possible null reference argument for parameter 'value' in 'void Dictionary<string, object>.Add(string key, object value)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(91,63): warning CS8604: Possible null reference argument for parameter 'item' in 'void List<string>.Add(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(101,63): warning CS8604: Possible null reference argument for parameter 'item' in 'void List<string>.Add(string item)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(110,39): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(116,41): warning CS8604: Possible null reference argument for parameter 'value' in 'void Dictionary<string, object>.Add(string key, object value)'. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(124,37): warning CS8602: Dereference of a possibly null reference. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+/workspace/runs/run_001/generated/GeneratedPipeline/Program.cs(135,40): warning CS8600: Converting null literal or possible null value to non-nullable type. [/workspace/runs/run_001/generated/GeneratedPipeline/GeneratedPipeline.csproj]
+    11 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.82
+
+
+STDERR:

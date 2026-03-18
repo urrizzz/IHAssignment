@@ -1,0 +1,71 @@
+[
+  {
+    "patient_id": "P001",
+    "first_name": "John",
+    "last_name": "Doe",
+    "gender": "male",
+    "birth_date": "1980-05-10"
+  },
+  {
+    "patient_id": "P002",
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "gender": "female",
+    "birth_date": "04/22/1992"
+  },
+  {
+    "patient_id": "P003",
+    "first_name": "Alice",
+    "last_name": "Brown",
+    "gender": "female",
+    "birth_date": "15-Mar-1985"
+  },
+  {
+    "patient_id": "P001",
+    "first_name": "John",
+    "last_name": "Doe Duplicate",
+    "gender": "male",
+    "birth_date": "1980-05-10"
+  },
+  {
+    "patient_id": "",
+    "first_name": "Missing",
+    "last_name": "Id",
+    "gender": "male",
+    "birth_date": "1978-09-01"
+  },
+  {
+    "patient_id": null,
+    "first_name": "Null",
+    "last_name": "Id",
+    "gender": "female",
+    "birth_date": "1988-11-20"
+  },
+  {
+    "patient_id": 12345,
+    "first_name": "Numeric",
+    "last_name": "Id",
+    "gender": "male",
+    "birth_date": "1990-07-07"
+  },
+  {
+    "patient_id": "P004",
+    "first_name": "Invalid",
+    "last_name": "Date",
+    "gender": "female",
+    "birth_date": "not-a-date"
+  },
+  {
+    "patient_id": "P005",
+    "first_name": "Missing",
+    "last_name": "BirthDate",
+    "gender": "female"
+  },
+  {
+    "patient_id": "P006",
+    "first_name": "Bad",
+    "last_name": "Format",
+    "gender": "male",
+    "birth_date": "31/12/2001"
+  }
+]

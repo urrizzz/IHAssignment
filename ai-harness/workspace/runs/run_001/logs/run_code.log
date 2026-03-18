@@ -1,0 +1,11 @@
+DOCKER COMMAND:
+docker exec dotnet-runner sh -lc cd /workspace/runs/run_001/generated/GeneratedPipeline && dotnet run
+
+STDOUT:
+Total records: 10
+Valid records: 6
+Duplicate records: 1
+Rejected records: 3
+
+
+STDERR:

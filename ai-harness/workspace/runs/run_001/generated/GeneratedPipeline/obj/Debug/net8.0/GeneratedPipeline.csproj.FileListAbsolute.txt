@@ -1,0 +1,14 @@
+/workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline
+/workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline.deps.json
+/workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline.runtimeconfig.json
+/workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline.dll
+/workspace/runs/run_001/generated/GeneratedPipeline/bin/Debug/net8.0/GeneratedPipeline.pdb
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.AssemblyInfoInputs.cache
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.AssemblyInfo.cs
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.csproj.CoreCompileInputs.cache
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.dll
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/refint/GeneratedPipeline.dll
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.pdb
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/GeneratedPipeline.genruntimeconfig.cache
+/workspace/runs/run_001/generated/GeneratedPipeline/obj/Debug/net8.0/ref/GeneratedPipeline.dll

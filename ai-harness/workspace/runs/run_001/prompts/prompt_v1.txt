@@ -1,0 +1,40 @@
+1. Goal
+Generate a .NET 8 console application in a single Program.cs file that reads a JSON array from /workspace/samples/patients.json, validates and deduplicates records by patient_id, transforms valid records into minimal FHIR Patient JSON resources, and writes them as NDJSON to /workspace/output/patients.ndjson.
+
+2. Input
+Read input ONLY from /workspace/samples/patients.json. The input file is one JSON array, not NDJSON. Read the full file as one string. Parse the full file as a JSON array using JsonDocument.Parse. If the input file does not exist, print exactly: Error: Input file not found. Then exit.
+
+3. Output
+Write output ONLY to /workspace/output/patients.ndjson. Ensure the parent directory /workspace/output exists before writing. Overwrite the output file on each run. The output file must contain NDJSON only. NDJSON means exactly one valid JSON object per line. Do not write blank lines. Do not write logging text into the output file.
+
+4. Requirements
+- Keep the implementation simple and deterministic
+- Use only standard .NET libraries
+- Do not use external packages
+- Do not use any FHIR library
+- Build each output record using Dictionary<string, object>
+- Build arrays using List<object>
+- Serialize each completed output record using JsonSerializer.Serialize
+- Write exactly one serialized JSON object per line to the output file
+- Validate only patient_id as required
+- Reject a record if patient_id is missing, null, not a JSON string, or an empty string
+- Deduplicate by patient_id
+- Keep only the first valid occurrence
+- Count later valid occurrences of the same patient_id as duplicates
+- Continue processing even if some records are invalid
+
+5. Console output
+Print exactly these four lines and nothing else:
+- Total records: <number>
+- Valid records: <number>
+- Duplicate records: <number>
+- Rejected records: <number>
+
+6. Constraints
+- Single Program.cs only
+- Return compilable code only
+- No explanations
+- No markdown fences
+- No undefined types
+- No code that depends on unavailable libraries
+- If helper methods are used, define them in the same Program.cs file

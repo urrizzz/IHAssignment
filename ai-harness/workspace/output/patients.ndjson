@@ -1,0 +1,6 @@
+{"resourceType":"Patient","id":"P001","identifier":[{"system":"urn:legacy:patient_id","value":"P001"}],"name":[{"family":"Doe","given":["John"]}],"gender":"male","birthDate":"1980-05-10"}
+{"resourceType":"Patient","id":"P002","identifier":[{"system":"urn:legacy:patient_id","value":"P002"}],"name":[{"family":"Smith","given":["Jane"]}],"gender":"female","birthDate":"1992-04-22"}
+{"resourceType":"Patient","id":"P003","identifier":[{"system":"urn:legacy:patient_id","value":"P003"}],"name":[{"family":"Brown","given":["Alice"]}],"gender":"female","birthDate":"1985-03-15"}
+{"resourceType":"Patient","id":"P004","identifier":[{"system":"urn:legacy:patient_id","value":"P004"}],"name":[{"family":"Date","given":["Invalid"]}],"gender":"female"}
+{"resourceType":"Patient","id":"P005","identifier":[{"system":"urn:legacy:patient_id","value":"P005"}],"name":[{"family":"BirthDate","given":["Missing"]}],"gender":"female"}
+{"resourceType":"Patient","id":"P006","identifier":[{"system":"urn:legacy:patient_id","value":"P006"}],"name":[{"family":"Format","given":["Bad"]}],"gender":"male"}

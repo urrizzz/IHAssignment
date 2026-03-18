@@ -1,0 +1,94 @@
+{
+  "workflow_id": "patient-import-v3",
+  "run_id": "run_001",
+  "workspace": "/workspace",
+  "max_iterations": 3,
+  "steps": [
+    {
+      "id": "design_prompt",
+      "type": "ai",
+      "model": "llama-3.1-8b-instant",
+      "inputs": {
+        "system_prompt_file": "/workspace/tasks/system_prompt_designer.md",
+        "prompt_file": "/workspace/tasks/import_patients.md",
+        "source_files": [
+          "/workspace/samples/patients.json"
+        ]
+      },
+      "outputs": {
+        "result_file": "/workspace/runs/${run_id}/prompts/prompt_v1.txt"
+      }
+    },
+    {
+      "id": "generate_code",
+      "type": "ai",
+      "model": "llama-3.3-70b-versatile",
+      "inputs": {
+        "system_prompt_file": "/workspace/tasks/system_code_generator.md",
+        "prompt_file": "${shared.current_prompt_file}",
+        "source_files": [
+          "/workspace/tasks/import_patients.md",
+          "/workspace/samples/patients.json"
+        ]
+      },
+      "outputs": {
+        "result_file": "/workspace/runs/${run_id}/results/generated_code.cs"
+      },
+      "postprocess": {
+         "strip_code_fence": true
+      }
+    },
+    {
+      "id": "build_code",
+      "type": "build",
+      "inputs": {
+        "project_dir": "/workspace/runs/${run_id}/generated/GeneratedPipeline",
+        "command": "dotnet build"
+      },
+      "outputs": {
+        "result_file": "/workspace/runs/${run_id}/results/build_code.json",
+        "console_file": "/workspace/runs/${run_id}/logs/build_code.log"
+      }
+    },
+    {
+      "id": "run_code",
+      "type": "run",
+      "inputs": {
+        "working_dir": "/workspace/runs/${run_id}/generated/GeneratedPipeline",
+        "command": "dotnet run"
+      },
+      "outputs": {
+        "result_file": "/workspace/runs/${run_id}/results/run_code.json",
+        "console_file": "/workspace/runs/${run_id}/logs/run_code.log"
+      }
+    },
+    {
+      "id": "analyze_build",
+      "type": "ai",
+      "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+      "retry_on_failure": true,
+      "inputs": {
+        "system_prompt_file": "/workspace/tasks/system_analyzer.md",
+        "prompt_file": "/workspace/tasks/analyze_build.md",
+        "source_files": [
+          "/workspace/tasks/import_patients.md",
+          "${shared.current_prompt_file}",
+          "${steps.generate_code.result.result_file}",
+          "${steps.build_code.result.result_file}",
+          "${steps.build_code.result.console_file}",
+          "${steps.run_code.result.result_file}",
+          "${steps.run_code.result.console_file}",
+          "/workspace/output/patients.ndjson"          
+        ]
+      },
+      "outputs": {
+        "result_file": "/workspace/runs/${run_id}/results/analyze_build.json"
+      },
+      "postprocess": {
+        "parse_json": true,
+        "save_pretty_json": true,
+        "extract_improved_prompt": true
+      }
+    }
+  ]
+}

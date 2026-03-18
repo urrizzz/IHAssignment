@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ai-harness", "ai-harness", "{70932A00-54AC-3066-A5C5-316C41F1235D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workspace", "workspace", "{4BA99A18-D48B-43D3-DA80-B4D82494C396}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "generated", "generated", "{4B6D859C-C6C1-400E-8454-4C1BD722D629}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratedPipeline", "ai-harness\workspace\generated\GeneratedPipeline\GeneratedPipeline.csproj", "{06367724-CF51-6A55-856A-F9C4C8FB4A2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06367724-CF51-6A55-856A-F9C4C8FB4A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06367724-CF51-6A55-856A-F9C4C8FB4A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06367724-CF51-6A55-856A-F9C4C8FB4A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06367724-CF51-6A55-856A-F9C4C8FB4A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BA99A18-D48B-43D3-DA80-B4D82494C396} = {70932A00-54AC-3066-A5C5-316C41F1235D}
+		{4B6D859C-C6C1-400E-8454-4C1BD722D629} = {4BA99A18-D48B-43D3-DA80-B4D82494C396}
+		{06367724-CF51-6A55-856A-F9C4C8FB4A2C} = {4B6D859C-C6C1-400E-8454-4C1BD722D629}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48FA2FF0-9167-455C-8A6E-6B8D223FFDD5}
+	EndGlobalSection
+EndGlobal

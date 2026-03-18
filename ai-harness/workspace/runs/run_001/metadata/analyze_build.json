@@ -1,0 +1,24 @@
+{
+  "step_id": "analyze_build",
+  "type": "ai",
+  "status": "success",
+  "started_at": "2026-03-18T15:13:39.294340+00:00",
+  "finished_at": "2026-03-18T15:13:40.129714+00:00",
+  "resolved_inputs": {
+    "system_prompt_file": "/workspace/tasks/system_analyzer.md",
+    "prompt_file": "/workspace/tasks/analyze_build.md",
+    "source_files": [
+      "/workspace/tasks/import_patients.md",
+      "/workspace/runs/run_001/prompts/prompt_v1.txt",
+      "/workspace/runs/run_001/results/generated_code.cs",
+      "/workspace/runs/run_001/results/build_code.json",
+      "/workspace/runs/run_001/logs/build_code.log",
+      "/workspace/runs/run_001/results/run_code.json",
+      "/workspace/runs/run_001/logs/run_code.log",
+      "/workspace/output/patients.ndjson"
+    ]
+  },
+  "outputs": {
+    "result_file": "/workspace/runs/run_001/results/analyze_build.json"
+  }
+}

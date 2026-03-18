@@ -1,0 +1,23 @@
+services:
+  harness:
+    build:
+      context: ./harness
+    container_name: ai-harness
+    working_dir: /app
+    volumes:
+      - ./workspace:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+
+  dotnet-runner:
+    build:
+      context: ./runner
+    container_name: dotnet-runner
+    working_dir: /workspace
+    volumes:
+      - ./workspace:/workspace
+    stdin_open: true
+    tty: true
