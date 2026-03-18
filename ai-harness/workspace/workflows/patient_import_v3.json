@@ -2,7 +2,7 @@
   "workflow_id": "patient-import-v3",
   "run_id": "run_001",
   "workspace": "/workspace",
-  "max_iterations": 3,
+  "max_iterations": 5,
   "steps": [
     {
       "id": "design_prompt",

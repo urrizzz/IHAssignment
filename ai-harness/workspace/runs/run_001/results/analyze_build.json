@@ -1,7 +1,5 @@
 {
   "status": "success",
-  "issues": [
-    "build warnings: 11"
-  ],
+  "issues": [],
   "improved_prompt_lines": []
 }
