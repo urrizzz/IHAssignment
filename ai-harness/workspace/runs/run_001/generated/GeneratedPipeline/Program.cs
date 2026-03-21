@@ -5,142 +5,109 @@ using System.Text.Json;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
+        string inputPath = "/workspace/samples/patients.json";
+        string outputPath = "/workspace/output/patients.ndjson";
+
+        if (!File.Exists(inputPath))
+        {
+            Console.WriteLine("Error: Input file not found.");
+            return;
+        }
+
+        string json = File.ReadAllText(inputPath);
+        JsonDocument doc = JsonDocument.Parse(json);
+        JsonElement root = doc.RootElement;
+
         int totalRecords = 0;
         int validRecords = 0;
         int duplicateRecords = 0;
         int rejectedRecords = 0;
-        var seenPatientIds = new HashSet<string>();
 
-        try
+        HashSet<string> patientIds = new HashSet<string>();
+
+        if (!Directory.Exists("/workspace/output"))
         {
-            string inputJson = File.ReadAllText("/workspace/samples/patients.json");
-            JsonDocument jsonDocument = JsonDocument.Parse(inputJson);
-            JsonElement root = jsonDocument.RootElement;
+            Directory.CreateDirectory("/workspace/output");
+        }
 
-            if (!root.ValueKind.Equals(JsonValueKind.Array))
+        using (StreamWriter writer = new StreamWriter(outputPath))
+        {
+            foreach (JsonElement element in root.EnumerateArray())
             {
-                throw new Exception("Invalid JSON array");
-            }
+                totalRecords++;
 
-            using (StreamWriter writer = new StreamWriter("/workspace/output/patients.ndjson"))
-            {
-                foreach (JsonElement element in root.EnumerateArray())
+                if (element.TryGetProperty("patient_id", out JsonElement patientId) && patientId.ValueKind == JsonValueKind.String && !string.IsNullOrEmpty(patientId.GetString()))
                 {
-                    totalRecords++;
+                    string patientIdValue = patientId.GetString();
 
-                    if (!element.TryGetProperty("patient_id", out JsonElement patientIdElement) ||
-                        patientIdElement.ValueKind != JsonValueKind.String ||
-                        string.IsNullOrEmpty(patientIdElement.GetString()))
-                    {
-                        rejectedRecords++;
-                        continue;
-                    }
-
-                    string patientId = patientIdElement.GetString();
-
-                    if (seenPatientIds.Contains(patientId))
+                    if (patientIds.Contains(patientIdValue))
                     {
                         duplicateRecords++;
-                        continue;
                     }
-
-                    seenPatientIds.Add(patientId);
-
-                    var patient = new Dictionary<string, object>
+                    else
                     {
-                        { "resourceType", "Patient" },
-                        { "id", patientId },
-                        { "identifier", new List<object>
+                        patientIds.Add(patientIdValue);
+
+                        Dictionary<string, object> patient = new Dictionary<string, object>
+                        {
+                            { "resourceType", "Patient" },
+                            { "id", patientIdValue },
+                            { "identifier", new List<object> { new Dictionary<string, object> { { "system", "urn:legacy:patient_id" }, { "value", patientIdValue } } } }
+                        };
+
+                        if (element.TryGetProperty("first_name", out JsonElement firstName) && firstName.ValueKind == JsonValueKind.String && !string.IsNullOrEmpty(firstName.GetString()))
+                        {
+                            string firstNameValue = firstName.GetString();
+
+                            if (element.TryGetProperty("last_name", out JsonElement lastName) && lastName.ValueKind == JsonValueKind.String && !string.IsNullOrEmpty(lastName.GetString()))
                             {
-                                new Dictionary<string, string>
-                                {
-                                    { "system", "urn:legacy:patient_id" },
-                                    { "value", patientId }
-                                }
+                                string lastNameValue = lastName.GetString();
+
+                                patient["name"] = new List<object> { new Dictionary<string, object> { { "family", lastNameValue }, { "given", new List<object> { firstNameValue } } } };
+                            }
+                            else
+                            {
+                                patient["name"] = new List<object> { new Dictionary<string, object> { { "given", new List<object> { firstNameValue } } } };
                             }
                         }
-                    };
-
-                    if (element.TryGetProperty("first_name", out JsonElement firstNameElement) &&
-                        firstNameElement.ValueKind == JsonValueKind.String &&
-                        !string.IsNullOrEmpty(firstNameElement.GetString()))
-                    {
-                        string firstName = firstNameElement.GetString();
-
-                        if (element.TryGetProperty("last_name", out JsonElement lastNameElement) &&
-                            lastNameElement.ValueKind == JsonValueKind.String &&
-                            !string.IsNullOrEmpty(lastNameElement.GetString()))
+                        else if (element.TryGetProperty("last_name", out JsonElement lastName) && lastName.ValueKind == JsonValueKind.String && !string.IsNullOrEmpty(lastName.GetString()))
                         {
-                            string lastName = lastNameElement.GetString();
+                            string lastNameValue = lastName.GetString();
 
-                            patient.Add("name", new List<object>
-                            {
-                                new Dictionary<string, object>
-                                {
-                                    { "family", lastName },
-                                    { "given", new List<string> { firstName } }
-                                }
-                            });
+                            patient["name"] = new List<object> { new Dictionary<string, object> { { "family", lastNameValue } } };
                         }
-                        else
-                        {
-                            patient.Add("name", new List<object>
-                            {
-                                new Dictionary<string, object>
-                                {
-                                    { "given", new List<string> { firstName } }
-                                }
-                            });
-                        }
-                    }
-                    else if (element.TryGetProperty("last_name", out JsonElement lastNameElement) &&
-                               lastNameElement.ValueKind == JsonValueKind.String &&
-                               !string.IsNullOrEmpty(lastNameElement.GetString()))
-                    {
-                        string lastName = lastNameElement.GetString();
 
-                        patient.Add("name", new List<object>
+                        if (element.TryGetProperty("gender", out JsonElement gender) && gender.ValueKind == JsonValueKind.String)
                         {
-                            new Dictionary<string, object>
+                            string genderValue = gender.GetString().ToLower();
+
+                            if (genderValue == "male" || genderValue == "female" || genderValue == "other" || genderValue == "unknown")
                             {
-                                { "family", lastName }
+                                patient["gender"] = genderValue;
                             }
-                        });
-                    }
-
-                    if (element.TryGetProperty("gender", out JsonElement genderElement) &&
-                        genderElement.ValueKind == JsonValueKind.String)
-                    {
-                        string gender = genderElement.GetString().ToLower();
-
-                        if (gender == "male" || gender == "female" || gender == "other" || gender == "unknown")
-                        {
-                            patient.Add("gender", gender);
                         }
-                    }
 
-                    if (element.TryGetProperty("birth_date", out JsonElement birthDateElement) &&
-                        birthDateElement.ValueKind == JsonValueKind.String)
-                    {
-                        string birthDate = birthDateElement.GetString();
-
-                        if (DateTime.TryParseExact(birthDate, new[] { "yyyy-MM-dd", "MM/dd/yyyy", "dd-MM-yyyy", "dd-MMM-yyyy" }, null, System.Globalization.DateTimeStyles.None, out DateTime parsedBirthDate))
+                        if (element.TryGetProperty("birth_date", out JsonElement birthDate) && birthDate.ValueKind == JsonValueKind.String)
                         {
-                            patient.Add("birthDate", parsedBirthDate.ToString("yyyy-MM-dd"));
-                        }
-                    }
+                            string birthDateValue = birthDate.GetString();
 
-                    writer.WriteLine(JsonSerializer.Serialize(patient));
-                    validRecords++;
+                            if (DateTime.TryParseExact(birthDateValue, new[] { "yyyy-MM-dd", "MM/dd/yyyy", "dd-MM-yyyy", "dd-MMM-yyyy" }, null, System.Globalization.DateTimeStyles.None, out DateTime birthDateParsed))
+                            {
+                                patient["birthDate"] = birthDateParsed.ToString("yyyy-MM-dd");
+                            }
+                        }
+
+                        writer.WriteLine(JsonSerializer.Serialize(patient));
+                        validRecords++;
+                    }
+                }
+                else
+                {
+                    rejectedRecords++;
                 }
             }
-        }
-        catch (FileNotFoundException)
-        {
-            Console.WriteLine("Error: Input file not found.");
-            return;
         }
 
         Console.WriteLine($"Total records: {totalRecords}");

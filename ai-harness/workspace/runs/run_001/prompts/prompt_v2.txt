@@ -1,4 +1,0 @@
-Generate a .NET 8 console application in a single Program.cs file.
-Read a JSON array from /workspace/samples/patients.json, validate and deduplicate records by patient_id, transform valid records into minimal FHIR Patient JSON resources, and write them as NDJSON to /workspace/output/patients.ndjson.
-Use standard .NET libraries only, no external packages.
-Fix build errors and ensure correct variable scope.
